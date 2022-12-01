@@ -6,8 +6,8 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-public class PanelBorder extends JPanel {
-	public PanelBorder() {
+public class RoundPanel extends JPanel {
+	public RoundPanel() {
 //		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
 //        this.setLayout(layout);
 //        layout.setHorizontalGroup(
