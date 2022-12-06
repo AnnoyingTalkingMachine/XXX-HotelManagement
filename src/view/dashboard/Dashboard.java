@@ -1,11 +1,11 @@
 package view.dashboard;
 
+import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 import view.BorderedRoundPanel;
 import view.Main;
@@ -19,8 +19,8 @@ public class Dashboard extends JPanel {
 	public Dashboard(Main parent) {
 		setOpaque(false);
 //TODO: Nhớ bỏ comment dòng dưới, còn tạm thời để WindowBuilder render được thì phải dùng cách này
-        setSize(parent.getWidth() - parent.getMenuTab().getWidth(), parent.getHeight());
-//        setSize(1280-300, 720);
+//        setSize(parent.getWidth() - parent.getMenuTab().getWidth(), parent.getHeight());
+        setSize(1280-300, 720);
         setLayout(null);
         
         JLabel title = new JLabel("ROOM MAP");
@@ -36,10 +36,11 @@ public class Dashboard extends JPanel {
         mapPanel.setBounds(10, 181, 699, 488);
 //        add(mapPanel);
         JPanel mapContent = new JPanel();
+        FlowLayout flowLayout = (FlowLayout) mapContent.getLayout();
+        flowLayout.setAlignment(FlowLayout.LEFT);
         mapPanel.add(mapContent);
         mapContent.setBounds(20, 20, 659, 448);
-        mapContent.setLayout(new GridLayout(0, 1, 10, 10));
-        for(int i=0; i<3; i++)
+        for(int i=0; i<9; i++)
         {
         	mapContent.add(new MapRoom());
         }
@@ -49,7 +50,7 @@ public class Dashboard extends JPanel {
         add(mapPanel);
         
         JPanel expirePanel = new RoundPanel();
-        expirePanel.setBounds(719, 163, 251, 506);
+        expirePanel.setBounds(719, 181, 251, 488);
         add(expirePanel);
         
         JPanel searchPanel = new BorderedRoundPanel();
@@ -61,8 +62,9 @@ public class Dashboard extends JPanel {
         add(legendPanel);
         
         JLabel lblAboutToExpire = new JLabel("About to expire...");
+        lblAboutToExpire.setVerticalAlignment(SwingConstants.BOTTOM);
         lblAboutToExpire.setFont(new Font("Verdana", Font.BOLD, 22));
-        lblAboutToExpire.setBounds(719, 122, 300, 30);
+        lblAboutToExpire.setBounds(719, 122, 300, 48);
         add(lblAboutToExpire);
 	}
 }

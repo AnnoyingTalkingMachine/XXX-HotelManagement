@@ -12,6 +12,9 @@ import javax.swing.SwingConstants;
 
 import view.BorderedRoundPanel;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class MapRoom extends BorderedRoundPanel {
 
@@ -34,6 +37,8 @@ public class MapRoom extends BorderedRoundPanel {
 	
 	
 	
+	
+	
 	public MapRoom() {
 		super();
 		addMouseListener(new MouseAdapter() {
@@ -42,33 +47,47 @@ public class MapRoom extends BorderedRoundPanel {
 				setStatus(getStatus()+1);
 			}
 		});
-		setSize(550, 150);
+		setSize(320, 100);
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[] {160, 160};
+		gridBagLayout.rowHeights = new int[] {40, 30, 30};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0};
+		setLayout(gridBagLayout);
 		
 		roomNumLbl = new JLabel("roomNum");
-		roomNumLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
-		roomNumLbl.setBounds(30, 10, 143, 25);
-		add(roomNumLbl);
+		roomNumLbl.setFont(new Font("Tahoma", Font.BOLD, 15));
+		GridBagConstraints gbc_roomNumLbl = new GridBagConstraints();
+		gbc_roomNumLbl.anchor = GridBagConstraints.WEST;
+		gbc_roomNumLbl.fill = GridBagConstraints.VERTICAL;
+		gbc_roomNumLbl.insets = new Insets(0, 10, 5, 5);
+		gbc_roomNumLbl.gridx = 0;
+		gbc_roomNumLbl.gridy = 0;
+		add(roomNumLbl, gbc_roomNumLbl);
 		
 		clientNameLbl = new JLabel("clientName");
+		clientNameLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		clientNameLbl.setVisible(false);
-		clientNameLbl.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		clientNameLbl.setBounds(30, 57, 199, 25);
-		add(clientNameLbl);
 		
 		statusPnl = new JPanel();
 		statusPnl.setOpaque(false);
 		statusPnl.setLayout(new CardLayout(0, 0));
-		statusPnl.setBounds(290, 11, 221, 36);
-		add(statusPnl);
+		GridBagConstraints gbc_statusPnl = new GridBagConstraints();
+		gbc_statusPnl.anchor = GridBagConstraints.SOUTH;
+		gbc_statusPnl.fill = GridBagConstraints.HORIZONTAL;
+		gbc_statusPnl.insets = new Insets(0, 0, 5, 10);
+		gbc_statusPnl.gridx = 1;
+		gbc_statusPnl.gridy = 0;
+		add(statusPnl, gbc_statusPnl);
 		
 		JLabel statusLbl_unavailable = new JLabel("Unavailable");
 		statusLbl_unavailable.setHorizontalAlignment(SwingConstants.RIGHT);
-		statusLbl_unavailable.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		statusLbl_unavailable.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		statusPnl.add(statusLbl_unavailable, STATUS_NAME[0]);
 		
 		JLabel statusLbl_free = new JLabel("Free");
 		statusLbl_free.setHorizontalAlignment(SwingConstants.RIGHT);
-		statusLbl_free.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		statusLbl_free.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		statusPnl.add(statusLbl_free, STATUS_NAME[1]);
 		
 		JPanel statusPnl_occupied = new JPanel();
@@ -80,11 +99,11 @@ public class MapRoom extends BorderedRoundPanel {
 		statusPnl.add(statusPnl_occupied, STATUS_NAME[2]);
 		JLabel statusLbl_occupied = new JLabel("Expires in ");
 		statusLbl_occupied.setHorizontalAlignment(SwingConstants.RIGHT);
-		statusLbl_occupied.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		statusLbl_occupied.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		statusPnl_occupied.add(statusLbl_occupied);
 		JLabel statusLbl_timeLeft = new JLabel("1h12m");
 		statusLbl_timeLeft.setHorizontalAlignment(SwingConstants.LEFT);
-		statusLbl_timeLeft.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		statusLbl_timeLeft.setFont(new Font("Tahoma", Font.BOLD, 15));
 		statusPnl_occupied.add(statusLbl_timeLeft);
 		
 		JPanel statusPnl_reserved = new JPanel();
@@ -96,55 +115,70 @@ public class MapRoom extends BorderedRoundPanel {
 		statusPnl.add(statusPnl_reserved, STATUS_NAME[3]);
 		JLabel statusLbl_reserved = new JLabel("Arrives in ");
 		statusLbl_reserved.setHorizontalAlignment(SwingConstants.RIGHT);
-		statusLbl_reserved.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		statusLbl_reserved.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		statusPnl_reserved.add(statusLbl_reserved);
 		JLabel statusLbl_timeIncoming = new JLabel("1h12m");
 		statusLbl_timeIncoming.setHorizontalAlignment(SwingConstants.LEFT);
-		statusLbl_timeIncoming.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		statusLbl_timeIncoming.setFont(new Font("Tahoma", Font.BOLD, 15));
 		statusPnl_reserved.add(statusLbl_timeIncoming);
 		
 		JLabel statusLbl_cleaning = new JLabel("Cleaning");
 		statusLbl_cleaning.setHorizontalAlignment(SwingConstants.RIGHT);
-		statusLbl_cleaning.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		statusLbl_cleaning.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		statusPnl.add(statusLbl_cleaning, STATUS_NAME[4]);
+		clientNameLbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_clientNameLbl = new GridBagConstraints();
+		gbc_clientNameLbl.anchor = GridBagConstraints.WEST;
+		gbc_clientNameLbl.insets = new Insets(0, 10, 5, 5);
+		gbc_clientNameLbl.gridx = 0;
+		gbc_clientNameLbl.gridy = 1;
+		add(clientNameLbl, gbc_clientNameLbl);
 		
 		clientTelLbl = new JLabel("tel");
 		clientTelLbl.setVisible(false);
-		clientTelLbl.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		clientTelLbl.setBounds(271, 57, 199, 25);
-		add(clientTelLbl);
+		clientTelLbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_clientTelLbl = new GridBagConstraints();
+		gbc_clientTelLbl.fill = GridBagConstraints.BOTH;
+		gbc_clientTelLbl.insets = new Insets(0, 10, 5, 0);
+		gbc_clientTelLbl.gridx = 1;
+		gbc_clientTelLbl.gridy = 1;
+		add(clientTelLbl, gbc_clientTelLbl);
 		
 		checkinPnl = new JPanel();
 		checkinPnl.setVisible(false);
 		checkinPnl.setOpaque(false);
-		checkinPnl.setBounds(30, 92, 240, 48);
-		add(checkinPnl);
-		checkinPnl.setLayout(null);
-		
-		JLabel checkinLbl = new JLabel("checkinTime");
-		checkinLbl.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		checkinPnl.add(checkinLbl);
-		checkinLbl.setBounds(46, 10, 184, 28);
+		GridBagConstraints gbc_checkinPnl = new GridBagConstraints();
+		gbc_checkinPnl.fill = GridBagConstraints.BOTH;
+		gbc_checkinPnl.insets = new Insets(0, 10, 5, 5);
+		gbc_checkinPnl.gridx = 0;
+		gbc_checkinPnl.gridy = 2;
+		add(checkinPnl, gbc_checkinPnl);
+		checkinPnl.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		
 		JPanel statusLEDPlaceholder = new JPanel();
-		statusLEDPlaceholder.setBounds(10, 10, 28, 28);
 		checkinPnl.add(statusLEDPlaceholder);
+		
+		JLabel checkinLbl = new JLabel("checkinTime");
+		checkinLbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		checkinPnl.add(checkinLbl);
 		
 		checkoutPnl = new JPanel();
 		checkoutPnl.setVisible(false);
 		checkoutPnl.setOpaque(false);
-		checkoutPnl.setLayout(null);
-		checkoutPnl.setBounds(271, 92, 240, 48);
-		add(checkoutPnl);
-		
-		JLabel checkoutLbl = new JLabel("checkinTime");
-		checkoutLbl.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		checkoutLbl.setBounds(46, 10, 184, 28);
-		checkoutPnl.add(checkoutLbl);
+		GridBagConstraints gbc_checkoutPnl = new GridBagConstraints();
+		gbc_checkoutPnl.insets = new Insets(0, 0, 5, 10);
+		gbc_checkoutPnl.fill = GridBagConstraints.BOTH;
+		gbc_checkoutPnl.gridx = 1;
+		gbc_checkoutPnl.gridy = 2;
+		add(checkoutPnl, gbc_checkoutPnl);
+		checkoutPnl.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 		
 		JPanel statusLEDPlaceholder_1 = new JPanel();
-		statusLEDPlaceholder_1.setBounds(10, 10, 28, 28);
 		checkoutPnl.add(statusLEDPlaceholder_1);
+		
+		JLabel checkoutLbl = new JLabel("checkoutTime");
+		checkoutLbl.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		checkoutPnl.add(checkoutLbl);
 		
 	}
 	
