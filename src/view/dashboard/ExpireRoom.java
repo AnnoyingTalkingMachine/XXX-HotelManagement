@@ -17,7 +17,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class MapRoom extends BorderedRoundPanel {
+public class ExpireRoom extends BorderedRoundPanel {
 
 	private int status = 0;
 	static final int	UNAVAILABLE = 0,
@@ -33,14 +33,12 @@ public class MapRoom extends BorderedRoundPanel {
 	private JPanel statusPnl;
 	private JLabel clientNameLbl;
 	private JLabel clientTelLbl;
-	private JPanel checkinPnl;
-	private JPanel checkoutPnl;
 	
 	
 	
 	
 	
-	public MapRoom() {
+	public ExpireRoom() {
 		super();
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -140,46 +138,10 @@ public class MapRoom extends BorderedRoundPanel {
 		clientTelLbl.setFont(new Font("Verdana", Font.PLAIN, 14));
 		GridBagConstraints gbc_clientTelLbl = new GridBagConstraints();
 		gbc_clientTelLbl.fill = GridBagConstraints.BOTH;
-		gbc_clientTelLbl.insets = new Insets(0, 10, 5, 0);
-		gbc_clientTelLbl.gridx = 1;
-		gbc_clientTelLbl.gridy = 1;
+		gbc_clientTelLbl.insets = new Insets(0, 10, 0, 5);
+		gbc_clientTelLbl.gridx = 0;
+		gbc_clientTelLbl.gridy = 2;
 		add(clientTelLbl, gbc_clientTelLbl);
-		
-		checkinPnl = new JPanel();
-		checkinPnl.setVisible(false);
-		checkinPnl.setOpaque(false);
-		GridBagConstraints gbc_checkinPnl = new GridBagConstraints();
-		gbc_checkinPnl.fill = GridBagConstraints.BOTH;
-		gbc_checkinPnl.insets = new Insets(0, 10, 5, 5);
-		gbc_checkinPnl.gridx = 0;
-		gbc_checkinPnl.gridy = 2;
-		add(checkinPnl, gbc_checkinPnl);
-		checkinPnl.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-		
-		JPanel statusLEDPlaceholder = new JPanel();
-		checkinPnl.add(statusLEDPlaceholder);
-		
-		JLabel checkinLbl = new JLabel("checkinTime");
-		checkinLbl.setFont(new Font("Verdana", Font.PLAIN, 13));
-		checkinPnl.add(checkinLbl);
-		
-		checkoutPnl = new JPanel();
-		checkoutPnl.setVisible(false);
-		checkoutPnl.setOpaque(false);
-		GridBagConstraints gbc_checkoutPnl = new GridBagConstraints();
-		gbc_checkoutPnl.insets = new Insets(0, 0, 5, 10);
-		gbc_checkoutPnl.fill = GridBagConstraints.BOTH;
-		gbc_checkoutPnl.gridx = 1;
-		gbc_checkoutPnl.gridy = 2;
-		add(checkoutPnl, gbc_checkoutPnl);
-		checkoutPnl.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-		
-		JPanel statusLEDPlaceholder_1 = new JPanel();
-		checkoutPnl.add(statusLEDPlaceholder_1);
-		
-		JLabel checkoutLbl = new JLabel("checkoutTime");
-		checkoutLbl.setFont(new Font("Verdana", Font.PLAIN, 13));
-		checkoutPnl.add(checkoutLbl);
 		
 	}
 	
@@ -194,20 +156,14 @@ public class MapRoom extends BorderedRoundPanel {
 	    	case OCCUPIED:
 	    		clientNameLbl.setVisible(true);
 	    		clientTelLbl.setVisible(true);
-	    		checkinPnl.setVisible(true);
-	    		checkoutPnl.setVisible(true);
 	    		break;
 	    	case RESERVED:
 	    		clientNameLbl.setVisible(true);
 	    		clientTelLbl.setVisible(true);
-	    		checkinPnl.setVisible(true);
-	    		checkoutPnl.setVisible(true);
 	    		break;
 	    	default:
 	    		clientNameLbl.setVisible(false);
 	    		clientTelLbl.setVisible(false);
-	    		checkinPnl.setVisible(false);
-	    		checkoutPnl.setVisible(false);
 	    }
 	    		
 	}

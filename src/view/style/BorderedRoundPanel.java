@@ -1,4 +1,4 @@
-package view;
+package view.style;
 
 import java.awt.Color;
 import java.awt.Graphics;

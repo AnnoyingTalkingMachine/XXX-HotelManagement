@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import view.dashboard.Dashboard;
 import view.menu.MenuTab;
 import view.reservation.Reservation;
+import view.style.RoundPanel;
 
 public class Main extends JFrame {
 	

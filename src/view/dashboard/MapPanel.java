@@ -1,6 +1,6 @@
 package view.dashboard;
 
-import view.RoundPanel;
+import view.style.RoundPanel;
 
 public class MapPanel extends RoundPanel {
 
