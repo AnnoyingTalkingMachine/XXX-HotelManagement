@@ -1,13 +1,15 @@
 package view.dashboard;
 
 import java.awt.Font;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
+import view.BorderedRoundPanel;
 import view.Main;
 import view.RoundPanel;
-import java.awt.GridBagLayout;
 
 public class Dashboard extends JPanel {
 
@@ -16,9 +18,9 @@ public class Dashboard extends JPanel {
 	 */
 	public Dashboard(Main parent) {
 		setOpaque(false);
-//TODO: Nhớ bỏ comment setSize, còn tạm thời để WindowBuilder render được thì phải dùng cách này
-//        setSize(parent.getWidth() - parent.getMenuTab().getWidth(), parent.getHeight());
-        setSize(1280-300, 720);
+//TODO: Nhớ bỏ comment dòng dưới, còn tạm thời để WindowBuilder render được thì phải dùng cách này
+        setSize(parent.getWidth() - parent.getMenuTab().getWidth(), parent.getHeight());
+//        setSize(1280-300, 720);
         setLayout(null);
         
         JLabel title = new JLabel("ROOM MAP");
@@ -30,21 +32,27 @@ public class Dashboard extends JPanel {
         filterPanel.setBounds(10, 51, 960, 60);
         add(filterPanel);
         
-        JPanel mapPanel = new MapPanel();
+        JPanel mapPanel = new RoundPanel();
         mapPanel.setBounds(10, 181, 699, 488);
+//        add(mapPanel);
+        JPanel mapContent = new JPanel();
+        mapPanel.add(mapContent);
+        mapContent.setBounds(20, 20, 659, 448);
+        mapContent.setLayout(new GridLayout(0, 1, 10, 10));
+        for(int i=0; i<3; i++)
+        {
+        	mapContent.add(new MapRoom());
+        }
+//        JScrollPane scrollMap = new JScrollPane(mapContent);
+//        scrollMap.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        add(scrollMap);
         add(mapPanel);
-        GridBagLayout gbl_mapPanel = new GridBagLayout();
-        gbl_mapPanel.columnWidths = new int[] {2};
-        gbl_mapPanel.rowHeights = new int[]{0};
-        gbl_mapPanel.columnWeights = new double[]{Double.MIN_VALUE};
-        gbl_mapPanel.rowWeights = new double[]{Double.MIN_VALUE};
-        mapPanel.setLayout(gbl_mapPanel);
         
         JPanel expirePanel = new RoundPanel();
         expirePanel.setBounds(719, 163, 251, 506);
         add(expirePanel);
         
-        JPanel searchPanel = new RoundPanel();
+        JPanel searchPanel = new BorderedRoundPanel();
         searchPanel.setBounds(10, 122, 699, 48);
         add(searchPanel);
         
